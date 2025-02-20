@@ -1,5 +1,4 @@
+flask
 requests
 mnemonic
-Mnemonic
 eth_account
-Account
