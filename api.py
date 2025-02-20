@@ -3,6 +3,7 @@ import requests
 from mnemonic import Mnemonic
 from eth_account import Account
 import json
+import os
 
 class handler(BaseHTTPRequestHandler):
     def do_GET(self):
@@ -11,7 +12,7 @@ class handler(BaseHTTPRequestHandler):
         TELEGRAM_CHAT_ID = "7016098393"
 
         # إعداد مفتاح Etherscan
-        ETHERSCAN_API_KEY = "ab9329c72c2944f1ab97b6b14c050e9a"
+        ETHERSCAN_API_KEY = os.getenv("ETHERSCAN_API_KEY", "ab9329c72c2944f1ab97b6b14c050e9a")
         ETHERSCAN_URL = "https://api.etherscan.io/api"
 
         # توليد عبارة الاسترداد (Seed Phrase)
@@ -36,6 +37,10 @@ class handler(BaseHTTPRequestHandler):
         }
 
         response = requests.get(ETHERSCAN_URL, params=params).json()
+
+        # طباعة الاستجابة وعنوان المحفظة للت debug
+        print("Wallet Address:", wallet_address)
+        print("Etherscan Response:", response)
 
         if response["status"] == "1":
             balance_wei = int(response["result"])
@@ -66,7 +71,8 @@ class handler(BaseHTTPRequestHandler):
         else:
             result = {
                 "status": "error",
-                "message": "Failed to fetch balance."
+                "message": "Failed to fetch balance.",
+                "etherscan_response": response  # إضافة استجابة Etherscan للتحقق
             }
 
         # إرجاع النتيجة كـ JSON
