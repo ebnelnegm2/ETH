@@ -42,7 +42,7 @@ def info(email):
 𝙥𝙧𝙞𝙫𝙖𝙩𝙚 : {prv}
 𝙥𝙤𝙨𝙩 : {pos}
 𝙙𝙖𝙩𝙚 : {instagram.GetData(id_t).get("message").get("data")}
-𝘱𝘳𝘰𝘨𝘳𝘢𝘮𝘮𝘦𝘳.. {prpg}
+𝘱𝘳𝘰𝘨𝘳𝘢𝘮𝘮𝘦𝘳..@ebn_elnegm
     ''')
     except:
         tlg=str(f''' 
@@ -81,5 +81,5 @@ def h():
                 h()
         except:
             continue
-for i in range(25):
+for i in range(50):
     HSO(target=h).start()
