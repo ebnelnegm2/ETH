@@ -1,2 +1,5 @@
 requests
 json
+random
+time
+colorama
